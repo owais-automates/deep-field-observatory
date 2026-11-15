@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# Test results
+test-results/
+
+# Kilo agent state
+.kilo/
+
+# Verification screenshots
+recharts-verification.png
+threejs-verification.png

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: #05060A;
+  --color-surface: rgba(5, 6, 10, 0.98);
+  --color-surface-solid: #0A0A0A;
+  --color-primary: #4A90E2;
+  --color-secondary: #00FF88;
+  --color-accent: #FFB347;
+  --color-text-primary: #E8ECF1;
+  --color-text-secondary: #8B949E;
+  --color-text-tertiary: #6B7280;
+}
+
+@layer base {
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+  }
+
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Instrument panel surface — flat, tokenized, no glow/glass-as-decoration */
+  .instrument-panel {
+    background-color: var(--color-surface-solid);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+  }
+
+  .instrument-panel:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  /* Catalog rail card — restrained scientific readout */
+  .exoplanet-card {
+    @apply instrument-panel cursor-pointer p-4;
+  }
+
+  .exoplanet-card.is-selected {
+    border-color: var(--color-primary);
+    background-color: rgba(74, 144, 226, 0.06);
+  }
+
+  .star-system-container {
+    background-color: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 2px;
+  }
+
+  .dashboard-container {
+    @apply instrument-panel;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 0.5rem;
+    color: var(--color-text-primary);
+  }
+}
+
+@layer utilities {
+  .placeholder {
+    color: var(--color-text-tertiary);
+  }
+}
