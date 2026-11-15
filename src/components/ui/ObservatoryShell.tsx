@@ -124,9 +124,9 @@ export const ObservatoryShell = ({
                 <h2 className="text-text-primary font-heading text-sm">About / Provenance</h2>
                 <button type="button" className="text-text-tertiary hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary px-1" onClick={() => setActivePanel('none')} aria-label="Close about panel">✕</button>
               </div>
-              <p>Demo visualization using mock data. Do not interpret as live NASA telemetry.</p>
+              <p>Exoplanet catalog data is retrieved live from the NASA Exoplanet Archive (Planetary Systems Composite Parameters). If the archive is unreachable, a labelled demo catalog is used instead. The solar-system model (Mercury, Venus, Earth, Mars) is mock data.</p>
               <p className="mt-1">HZ boundaries: Kopparapu et al. (2013), ApJ 765,131; erratum ApJ 770,82. HZ is a climate/orbit guide, not a habitability guarantee.</p>
-              <p className="mt-1">Exoplanet host-system geometry is unavailable in current catalog mock data and shown as “Unavailable”.</p>
+              <p className="mt-1">Missing numeric fields are shown as “Unavailable”. No fabricated values are inserted.</p>
             </div>
           </div>
         )}

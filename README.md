@@ -54,16 +54,17 @@ npm run build
 
 ## Data sources and citations
 
-- **Exoplanet catalog:** mock/demo data only. The three exoplanets shown (Kepler-186f, TRAPPIST-1e, Proxima Centauri b) are illustrative records; their values are not pulled live from a NASA API in this build.
+- **Exoplanet catalog:** exoplanet data is retrieved live at request time from the **NASA Exoplanet Archive** TAP service (Planetary Systems Composite Parameters, `pscomppars` table), via a server-side `fetch` in `src/lib/data/nasa-api.ts`. The query targets Kepler-186, TRAPPIST-1, and Proxima Cen and maps the three records shown (Kepler-186f, TRAPPIST-1e, Proxima Centauri b). If the archive is unreachable, the app falls back to a **demo catalog** that is explicitly labelled as such in the UI — it is never presented as NASA data. Each record carries a `source` tag (`nasa-exoplanet-archive` or `demo`).
 - **Solar-system model:** mock data representing Mercury, Venus, Earth, and Mars.
 - **Habitable-zone boundaries:** Kopparapu et al. (2013), *ApJ* 765,131; erratum *ApJ* 770,82. Conservative 0.99–1.67 AU, optimistic 0.75–1.77 AU. The HZ is an illustrative climate/orbit guide, not a habitability guarantee, and is rendered on a visual scale independent of the scientific AU values.
 - **Aggregate chart data:** synthetic demo dataset. It is not real exoplanet-discovery statistics.
 
 ## Mock data and limitations
 
-- All displayed data is mock/demo. Do not describe it as live NASA data.
-- Exoplanet host-system geometry is unavailable in the current catalog mock and is shown as "Unavailable (unverified in catalog)".
-- Missing numeric fields are shown as "Unavailable" or "—".
+- The exoplanet catalog is normally live NASA data (see "Data sources"). When the archive is unreachable, a demo catalog is used and is labelled as such in the UI.
+- The solar-system model (Mercury, Venus, Earth, Mars) is mock data and is not sourced from a live API.
+- Exoplanet host-system geometry shown in the detail panel comes from the NASA record (host star name); orbital geometry in the 3D scene is illustrative only.
+- Missing numeric fields are shown as "Unavailable" or "—". No fabricated values are inserted.
 - No real SPHEREx imagery, spectra, or time-series sky data is integrated.
 - The 3D scene is a visualization, not a physically accurate simulation.
 
@@ -73,7 +74,7 @@ This prototype was developed with assistance from an AI coding agent (Kilo Code)
 
 ## Known limitations
 
-- No live NASA API integration; all data is mock.
+- The exoplanet catalog is fetched live from the NASA Exoplanet Archive over the network; if the archive is unreachable at request time, the app silently degrades to a labelled demo catalog.
 - No SPHEREx challenge functionality.
 - Pre-existing test-file type errors remain in `src/components/scientific/ExoplanetCard.test.tsx` and `src/components/scientific/StarSystem3D.test.tsx` (they test an older component API).
 - No ESLint configuration file exists in the repository root.

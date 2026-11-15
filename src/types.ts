@@ -5,6 +5,15 @@ export interface ExoplanetData {
   mass: number; // in Earth masses
   radius: number; // in Earth radii
   discoveryYear: number;
+  // Optional NASA Exoplanet Archive (pscomppars) fields.
+  // When present these are verified NASA measurements; when absent the
+  // value is treated as unavailable and never fabricated.
+  hostStar?: string;
+  discoveryMethod?: string;
+  orbitalPeriodDays?: number;
+  semiMajorAxisAu?: number;
+  equilibriumTempK?: number;
+  source?: 'nasa-exoplanet-archive' | 'demo';
 }
 
 export interface StarSystemData {

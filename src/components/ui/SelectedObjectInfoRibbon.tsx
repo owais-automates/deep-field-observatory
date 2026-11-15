@@ -33,6 +33,12 @@ export function SelectedObjectInfoRibbon({
 
   const modeLabel = visualizationMode === 'habitable' ? 'Habitable Zone' : 'Orbital';
 
+  // Source label reflects the record's provenance tag. NASA records are
+  // labelled with their archive; demo fallback records stay labelled "Demo".
+  const exoSourceLabel = exo?.source === 'nasa-exoplanet-archive'
+    ? 'NASA Exoplanet Archive'
+    : 'Demo';
+
   // Exoplanet selection
   if (exo) {
     return (
@@ -44,7 +50,7 @@ export function SelectedObjectInfoRibbon({
                 <span className="text-text-primary font-semibold font-heading text-sm sm:text-base leading-tight truncate flex-1 min-w-0">{exo.name}</span>
                 <span className="text-text-tertiary text-[10px] sm:text-xs font-mono whitespace-nowrap flex-shrink-0">Exoplanet</span>
               </div>
-              <span className="text-text-tertiary text-[9px] sm:text-[10px] font-mono">Catalog · Demo</span>
+              <span className="text-text-tertiary text-[9px] sm:text-[10px] font-mono">Catalog · {exoSourceLabel}</span>
             </div>
             <div className="hidden sm:flex items-center gap-4 border-l border-white/[0.08] pl-4 flex-shrink-0">
               <div className="flex flex-col items-start">

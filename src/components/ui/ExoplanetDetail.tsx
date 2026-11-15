@@ -40,6 +40,10 @@ export const ExoplanetDetail = ({ exoplanetId, exoplanets }: ExoplanetDetailProp
     </div>
   );
 
+  const sourceLabel = target.source === 'nasa-exoplanet-archive'
+    ? 'NASA Exoplanet Archive'
+    : 'Demo catalog';
+
   return (
     <div className="p-4">
       <h3 className="text-text-primary text-base font-semibold font-heading mb-3">
@@ -47,15 +51,32 @@ export const ExoplanetDetail = ({ exoplanetId, exoplanets }: ExoplanetDetailProp
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-0">
         {field('Name', fmt(target.name))}
+        {field('Host star', target.hostStar ?? 'Unavailable')}
         {field('Distance', fmt(target.distance, ' ly'))}
         {field('Mass', target.mass != null ? `${target.mass} M⊕` : 'Unavailable')}
         {field('Radius', target.radius != null ? `${target.radius} R⊕` : 'Unavailable')}
         {field('Discovery year', fmt(target.discoveryYear))}
-        {field('Host system', 'Unavailable (unverified in catalog)')}
+        {field('Discovery method', target.discoveryMethod ?? 'Unavailable')}
+        {field('Orbital period', fmt(target.orbitalPeriodDays, ' d'))}
+        {field('Semi-major axis', fmt(target.semiMajorAxisAu, ' AU'))}
+        {field('Equilibrium temp', fmt(target.equilibriumTempK, ' K'))}
       </div>
       <p className="mt-3 text-text-tertiary text-xs font-mono">
-        Demo catalog data; missing fields shown as Unavailable.
+        Data source: {sourceLabel}. Missing fields shown as Unavailable.
       </p>
+      {target.source === 'nasa-exoplanet-archive' && (
+        <p className="mt-1 text-text-tertiary text-[11px] font-mono">
+          Source: NASA Exoplanet Archive — Planetary Systems Composite Parameters.{' '}
+          <a
+            href="https://exoplanetarchive.ipac.caltech.edu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            exoplanetarchive.ipac.caltech.edu
+          </a>
+        </p>
+      )}
       <div className="mt-4">
         <button
           type="button"
